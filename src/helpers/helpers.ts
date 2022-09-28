@@ -1,65 +1,60 @@
-import { useState, useCallback } from "react";
+import { GameState, Player, PointsState } from "../types/game";
 
-export function winPoint(currentPoints: number) {
-  switch (currentPoints) {
-    case 0:
-      return "Love";
-    case 1:
-      return "15";
-    case 2:
-      return "30";
-    case 3:
-      return "40";
-    case 4:
-      return "Game";
+
+
+export const playerWinsPoint = (state: PointsState, player: Player) => {
+  let score;
+  if(player === 1) {
+    if(state.points[0] === 0) {
+      const player = { points: [15, state.points[1]] }
+      score = player.points
+      return score;
+    }
+    if(state.points[0] === 15) {
+      const player = { points: [30, state.points[1]] }
+      score = player.points
+      return score;
+    }
+    if(state.points[0] === 30) {
+      const player = { points: [40, state.points[1]] }
+      score = player.points
+      return score;
+    } 
+  } else {
+    if(state.points[1] === 0) {
+      const player = { points: [15, state.points[0]] }
+      score = player.points
+      return score;
+    }
+    if(state.points[1] === 15) {
+      const player = { points: [30, state.points[0]] }
+      score = player.points
+      return score;
+    }
+    if(state.points[1] === 30) {
+      const player = { points: [40, state.points[0]] }
+      score = player.points
+      return score;
+    }
   }
-  return "Advantage";
 }
 
-export function serveBall(serve: string) {
-  switch (serve) {
-    case "Ace":
-    case "Immediate Point":
-      return "point";
-    case "Fault":
-    case "Let":
-      return "serveAgain";
+export const playerWinsGame = (state: GameState, player: Player) => {
+  if(player === 1) {
+    if(state.points[0] === 40 && state.points[1] !== 40 && state.points[1] !== "Advantage") {
+      const player = {points: [0, 0], game: [1, 0]} 
+      return {
+        gameScore: player.game,
+        pointsScore: player.points
+      }
+    }
+  } else {
+    if(state.points[1] === 40 && state.points[0] !== 40 && state.points[0] !== "Advantage") {
+      const player = {points: [0, 0], game: [0, 1]} 
+      return {
+        gameScore: player.game,
+        pointsScore: player.points
+      }
+    }
   }
-  return "play";
-}
-
-export function hitBall(hit: string) {
-  switch (hit) {
-    case "Didn't Reach":
-    case "Out":
-      return "loose point";
-    case "Smesh ball":
-    case "Dink ball":
-      return "point";
-  }
-  return "back to opponent";
-}
-
-export function willOfTheTennisGods(tennisOptions: Array<string>) {
-  const randomOutcome = Math.floor(Math.random() * tennisOptions.length);
-  return tennisOptions[randomOutcome];
-}
-
-export function play(action: string) {
-  switch (action) {
-    case "back to opponent":
-    case "play":
-    case "serveAgain":
-    case "loose point":
-      return false;
-  }
-  return true;
-}
-
-export function takeTurn(
-  serveType: typeof serveBall | typeof hitBall,
-  gameplayOption: string
-) {
-  let addPointForServingPlayer = play(serveType(gameplayOption));
-  return addPointForServingPlayer;
 }
