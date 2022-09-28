@@ -1,6 +1,6 @@
 type Set = 0 | 1 | 2 | 3;
 
-type Game = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type Game = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 export type Point = 0 | 15 | 30 | 40 | "Advantage" | "-";
 

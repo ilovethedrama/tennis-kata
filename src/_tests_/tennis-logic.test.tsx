@@ -38,4 +38,15 @@ describe("Tennis game", () => {
     const oneGame = playerWinsGame(playerWinsAdvPoint, 1)
     expect(oneGame).toEqual({"game": [1,0], "points": [0,0]});
   })
+
+  it('handle incrementing of player one winning games', () => {
+    const playerWinsAdvPoint: GameState = { 
+      sets: [0,0],
+      games: [5,0],
+      points: [40,30]
+    };
+
+    const oneGame = playerWinsGame(playerWinsAdvPoint, 1)
+    expect(oneGame).toEqual({"game": [6,0], "points": [0,0]});
+  })
 });
