@@ -25,6 +25,17 @@ describe("Tennis game", () => {
     };
 
     const oneGame = playerWinsGame(playerOneGame, 1)
-    expect(oneGame).toEqual({"gameScore": [1, 0], "pointsScore": [0, 0]});
+    expect(oneGame).toEqual({"game": [1, 0], "points": [0, 0]});
+  })
+
+  it('handle player one winning a game when in deuce', () => {
+    const playerWinsAdvPoint: GameState = { 
+      sets: [0,0],
+      games: [0,0],
+      points: ["Advantage","-"]
+    };
+
+    const oneGame = playerWinsGame(playerWinsAdvPoint, 1)
+    expect(oneGame).toEqual({"game": [1,0], "points": [0,0]});
   })
 });

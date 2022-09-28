@@ -44,16 +44,23 @@ export const playerWinsGame = (state: GameState, player: Player) => {
     if(state.points[0] === 40 && state.points[1] !== 40 && state.points[1] !== "Advantage") {
       const player = {points: [0, 0], game: [1, 0]} 
       return {
-        gameScore: player.game,
-        pointsScore: player.points
+        game: player.game,
+        points: player.points
+      }
+    }
+    if(state.points[0] === "Advantage" && state.points[1] === "-" ) {
+      const player = {points: [0, 0], game: [1, 0]} 
+      return {
+        game: player.game,
+        points: player.points
       }
     }
   } else {
     if(state.points[1] === 40 && state.points[0] !== 40 && state.points[0] !== "Advantage") {
       const player = {points: [0, 0], game: [0, 1]} 
       return {
-        gameScore: player.game,
-        pointsScore: player.points
+        game: player.game,
+        points: player.points
       }
     }
   }
