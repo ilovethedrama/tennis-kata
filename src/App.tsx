@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css";
-import TennisGame from "./components/tennisGame";
 
 function App() {
-  return <TennisGame players={["Venus", "Serena"]} />;
+  return <p>This is a TDD Tennis Game Kata.</p>;
 }
 
 export default App;
