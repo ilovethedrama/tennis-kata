@@ -34,55 +34,51 @@ export const playerWinsPoint = (state: PointsState, player: Player) => {
 }
 
 const incrementGame = (state: GameState, player: Player) => {
-  let currentGame = player === 1 ? state.games[0] : state.games[1]  
-  let newState
-  let updatedState
+  const playerOne = state.games[0]
+  const playerTwo = state.games[1]
+  const currentGame = player === 1 ? playerOne : playerTwo;  
+  const updatedGame = currentGame + 1;
+
   if(currentGame === 6) {
     const currentSetCount = incrementSet(state, player)
-     newState = currentSetCount;
-    return newState
+    return currentSetCount
   }
   
-  currentGame++
   if(player === 1) {
-    updatedState = { ...state, points: [0, 0], games: [currentGame, state.games[1]]} 
+    return { ...state, points: [0, 0], games: [updatedGame, state.games[1]]} 
   } else {
-    updatedState = { ...state, points: [0, 0], games: [state.games[0], currentGame]} 
+    return { ...state, points: [0, 0], games: [state.games[0], updatedGame]} 
   }
-  newState = updatedState;
-  return newState
 }
 
 const incrementSet = (state: GameState, player: Player) => {
-  let currentSet = player === 1 ? state.sets[0] : state.sets[1]  
-  let updatedState
-  if(currentSet === 3) {
-    const updatedState = { ...state, points: [0, 0], games: [0, 0], sets:[currentSet, state.sets[1]] } 
-    return updatedState
-  }
-  
-  currentSet++
+  const playerOne = state.sets[0];
+  const playerTwo = state.sets[1];
+  const currentSet = player === 1 ? playerOne : playerTwo;  
+  const updatedSet = currentSet + 1;
+     
   if(player === 1) {
-    updatedState = { ...state, points: [0, 0], games: [0, 0], sets:[currentSet, state.sets[1]]} 
+    return { ...state, points: [0, 0], games: [0, 0], sets:[updatedSet, playerTwo]} 
   } else {
-    updatedState = { ...state, points: [0, 0], games: [0, 0], sets:[state.sets[0], currentSet]} 
+    return { ...state, points: [0, 0], games: [0, 0], sets:[playerOne, updatedSet]} 
   }
-
-  return updatedState;
 }
 
 export const playerWinsGame = (state: GameState, player: Player) => {
+  const playerOneScore = state.points[0];
+  const playerTwoScore = state.points[1];
+  
   if(player === 1) {
-    if(state.points[0] === 40 && state.points[1] !== 40 && state.points[1] !== "Advantage") {
+    if(playerOneScore === 40 && playerTwoScore !== 40 && playerTwoScore !== "Advantage") {
       const updatedScores = incrementGame(state, player);
       return updatedScores
     }
-    if(state.points[0] === "Advantage" && state.points[1] === "-" ) {
+    if(playerOneScore === "Advantage" && playerTwoScore === "-" ) {
       const updatedScores = incrementGame(state, player);
       return updatedScores
     }
   } else {
-    if(state.points[1] === 40 && state.points[0] !== 40 && state.points[0] !== "Advantage") {
+    if(playerTwoScore === 40 && playerOneScore !== 40 && playerOneScore !== "Advantage") {
       const updatedScores = incrementGame(state, player);
       return updatedScores
     }
