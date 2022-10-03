@@ -7,32 +7,26 @@ export const playerWinsPoint = (state: PointsState, player: Player) => {
   const playerTwoScore = state.points[1];
   if(player === 1) {
     if(playerOneScore === 0) {
-      const updatedScore = [15, state.points[1]]
-      return updatedScore 
+      return [15, state.points[1]] 
     }
     
     if(playerOneScore === 15) {
-      const updatedScore = [30, state.points[1]]
-      return updatedScore;
+      return [30, state.points[1]];
     }
     if(playerOneScore === 30) {
-      const updatedScore = [40, state.points[1]]
-      return updatedScore;
+      return [40, state.points[1]]
     } 
   } 
 
   if(player === 2) {
     if(playerTwoScore === 0) {
-      const updatedScore = [15, state.points[0]]
-      return updatedScore;
+      return [15, state.points[0]];
     }
     if(playerTwoScore === 15) {
-      const updatedScore = [30, state.points[0]]
-      return updatedScore;
+      return [30, state.points[0]];
     }
     if(playerTwoScore === 30) {
-      const updatedScore = [40, state.points[0]]
-      return updatedScore;
+      return [40, state.points[0]];
     }
   }
 }
