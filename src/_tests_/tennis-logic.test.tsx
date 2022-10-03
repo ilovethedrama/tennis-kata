@@ -54,14 +54,14 @@ describe("Tennis game", () => {
     expect(oneGame).toEqual({"sets":[0,0], "games": [1,0], "points": [0,0]});
   })
 
-  it('handle incrementing of player one winning games', () => {
+  it('handle incrementing of player one winning a set', () => {
     const playerWinsAdvPoint: GameState = { 
       sets: [0,0],
-      games: [1,0],
+      games: [6,0],
       points: [40,30]
     };
 
     const oneGame = playerWinsGame(playerWinsAdvPoint, 1)
-    expect(oneGame).toEqual({"sets":[0,0], "games": [2,0], "points": [0,0]});
+    expect(oneGame).toEqual({"sets":[1,0], "games": [0,0], "points": [0,0]});
   })
 });
