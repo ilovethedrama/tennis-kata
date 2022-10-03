@@ -9,12 +9,14 @@ export const playerWinsPoint = (state: PointsState, player: Player) => {
     if(playerOneScore === 0) {
       return [15, state.points[1]] 
     }
-    
     if(playerOneScore === 15) {
       return [30, state.points[1]];
     }
     if(playerOneScore === 30) {
       return [40, state.points[1]]
+    } 
+    if(playerOneScore === 40 && playerOneScore === 40) {
+      return ["Advantage", "-"]
     } 
   } 
 
