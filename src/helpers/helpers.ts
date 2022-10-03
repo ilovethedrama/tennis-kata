@@ -3,38 +3,36 @@ import { Game, GameState, Player, PointsState } from "../types/game";
 
 
 export const playerWinsPoint = (state: PointsState, player: Player) => {
-  let score;
+  const playerOneScore = state.points[0];
+  const playerTwoScore = state.points[1];
   if(player === 1) {
-    if(state.points[0] === 0) {
-      const player = { points: [15, state.points[1]] }
-      score = player.points
-      return score;
+    if(playerOneScore === 0) {
+      const updatedScore = [15, state.points[1]]
+      return updatedScore 
     }
-    if(state.points[0] === 15) {
-      const player = { points: [30, state.points[1]] }
-      score = player.points
-      return score;
+    
+    if(playerOneScore === 15) {
+      const updatedScore = [30, state.points[1]]
+      return updatedScore;
     }
-    if(state.points[0] === 30) {
-      const player = { points: [40, state.points[1]] }
-      score = player.points
-      return score;
+    if(playerOneScore === 30) {
+      const updatedScore = [40, state.points[1]]
+      return updatedScore;
     } 
-  } else {
-    if(state.points[1] === 0) {
-      const player = { points: [15, state.points[0]] }
-      score = player.points
-      return score;
+  } 
+
+  if(player === 2) {
+    if(playerTwoScore === 0) {
+      const updatedScore = [15, state.points[0]]
+      return updatedScore;
     }
-    if(state.points[1] === 15) {
-      const player = { points: [30, state.points[0]] }
-      score = player.points
-      return score;
+    if(playerTwoScore === 15) {
+      const updatedScore = [30, state.points[0]]
+      return updatedScore;
     }
-    if(state.points[1] === 30) {
-      const player = { points: [40, state.points[0]] }
-      score = player.points
-      return score;
+    if(playerTwoScore === 30) {
+      const updatedScore = [40, state.points[0]]
+      return updatedScore;
     }
   }
 }
