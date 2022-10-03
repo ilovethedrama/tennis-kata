@@ -32,7 +32,7 @@ describe("Tennis game", () => {
     expect(oneGame).toEqual({"game": [1, 0], "points": [0, 0]});
   })
 
-  it('handle player one winning an advantage point when the score is 40-40', () => {
+  it('handle player one winning an advantage point when the score is in deuce', () => {
     const playerWinsAdvPoint: GameState = { 
       sets: [0,0],
       games: [0,0],
@@ -43,7 +43,7 @@ describe("Tennis game", () => {
     expect(oneGame).toEqual(["Advantage","-"]);
   })
 
-  it('handle player one winning a game when in deuce', () => {
+  it('handle player one winning a game when they have the advantage point', () => {
     const playerWinsAdvPoint: GameState = { 
       sets: [0,0],
       games: [0,0],
@@ -57,11 +57,11 @@ describe("Tennis game", () => {
   it('handle incrementing of player one winning games', () => {
     const playerWinsAdvPoint: GameState = { 
       sets: [0,0],
-      games: [5,0],
+      games: [1,0],
       points: [40,30]
     };
 
     const oneGame = playerWinsGame(playerWinsAdvPoint, 1)
-    expect(oneGame).toEqual({"game": [6,0], "points": [0,0]});
+    expect(oneGame).toEqual({"game": [2,0], "points": [0,0]});
   })
 });
