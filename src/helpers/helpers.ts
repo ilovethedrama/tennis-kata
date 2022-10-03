@@ -33,41 +33,58 @@ export const playerWinsPoint = (state: PointsState, player: Player) => {
   }
 }
 
-const incrementGame = (currentGame: Game) => {
-  if(currentGame === 7) {
-    return currentGame;
+const incrementGame = (state: GameState, player: Player) => {
+  let currentGame = player === 1 ? state.games[0] : state.games[1]  
+  let newState
+  let updatedState
+  if(currentGame === 6) {
+    const currentSetCount = incrementSet(state, player)
+     newState = currentSetCount;
+    return newState
+  }
+  
+  currentGame++
+  if(player === 1) {
+    updatedState = { ...state, points: [0, 0], games: [currentGame, state.games[1]]} 
+  } else {
+    updatedState = { ...state, points: [0, 0], games: [state.games[0], currentGame]} 
+  }
+  newState = updatedState;
+  return newState
+}
+
+const incrementSet = (state: GameState, player: Player) => {
+  let currentSet = player === 1 ? state.sets[0] : state.sets[1]  
+  let updatedState
+  if(currentSet === 3) {
+    const updatedState = { ...state, points: [0, 0], games: [0, 0], sets:[currentSet, state.sets[1]] } 
+    return updatedState
+  }
+  
+  currentSet++
+  if(player === 1) {
+    updatedState = { ...state, points: [0, 0], games: [0, 0], sets:[currentSet, state.sets[1]]} 
+  } else {
+    updatedState = { ...state, points: [0, 0], games: [0, 0], sets:[state.sets[0], currentSet]} 
   }
 
-  currentGame++
-  return currentGame;
+  return updatedState;
 }
 
 export const playerWinsGame = (state: GameState, player: Player) => {
   if(player === 1) {
     if(state.points[0] === 40 && state.points[1] !== 40 && state.points[1] !== "Advantage") {
-      const currentGameCount = incrementGame(state.games[0]);
-      const player = { points: [0, 0], game: [currentGameCount, state.games[1]] } 
-      return {
-        game: player.game,
-        points: player.points
-      }
+      const updatedScores = incrementGame(state, player);
+      return updatedScores
     }
     if(state.points[0] === "Advantage" && state.points[1] === "-" ) {
-      const currentGameCount = incrementGame(state.games[0]);
-      const player = { points: [0, 0], game: [currentGameCount, state.games[1]] } 
-      return {
-        game: player.game,
-        points: player.points
-      }
+      const updatedScores = incrementGame(state, player);
+      return updatedScores
     }
   } else {
     if(state.points[1] === 40 && state.points[0] !== 40 && state.points[0] !== "Advantage") {
-      const currentGameCount = incrementGame(state.games[1]);
-      const player = { points: [0, 0], game: [state.games[0], currentGameCount] } 
-      return {
-        game: player.game,
-        points: player.points
-      }
+      const updatedScores = incrementGame(state, player);
+      return updatedScores
     }
   }
 }
