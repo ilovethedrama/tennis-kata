@@ -22,13 +22,7 @@ export const playerWinsPoint = (state: PointsState, player: Player) => {
 
   if(player === 2) {
     if(playerTwoScore === 0) {
-      return [15, state.points[0]];
-    }
-    if(playerTwoScore === 15) {
-      return [30, state.points[0]];
-    }
-    if(playerTwoScore === 30) {
-      return [40, state.points[0]];
+      return [state.points[0], 15];
     }
   }
 }
