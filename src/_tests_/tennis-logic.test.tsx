@@ -75,7 +75,12 @@ describe("Tennis game", () => {
       const twoPoints = playerWinsPoint(playerTwoPoints, 2);
       expect(twoPoints).toEqual([0,30]);
     })
-  
+
+    it("handle player one winning a point when the game score is 30 - 0", () => {
+      const playerThreePoints: PointsState = { points: [0,30] };
+      const threePoints = playerWinsPoint(playerThreePoints, 2);
+      expect(threePoints).toEqual([0,40]);
+    })
   })
 
 });
