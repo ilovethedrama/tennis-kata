@@ -76,7 +76,7 @@ describe("Tennis game", () => {
       expect(twoPoints).toEqual([0,30]);
     })
 
-    it("handle player two winning a point when the game score is 30 - 0", () => {
+    it("handle player two winning a point when the game score is 0 - 30", () => {
       const playerThreePoints: PointsState = { points: [0,30] };
       const threePoints = playerWinsPoint(playerThreePoints, 2);
       expect(threePoints).toEqual([0,40]);
