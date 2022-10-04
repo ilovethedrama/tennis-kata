@@ -81,6 +81,17 @@ describe("Tennis game", () => {
       const threePoints = playerWinsPoint(playerThreePoints, 2);
       expect(threePoints).toEqual([0,40]);
     })
+
+    it("handle player two winning a game when not in deuce", () => {
+      const playerTwoGame: GameState = { 
+        sets: [0,0],
+        games: [0,0],
+        points: [0,40]
+      };
+      const oneGame = playerWinsGame(playerTwoGame, 2)
+      expect(oneGame?.games).toEqual([0, 1]);
+    })
+  
   })
 
 });
