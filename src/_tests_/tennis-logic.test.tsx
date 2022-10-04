@@ -91,7 +91,15 @@ describe("Tennis game", () => {
       const oneGame = playerWinsGame(playerTwoGame, 2)
       expect(oneGame?.games).toEqual([0, 1]);
     })
-  
+    it('handle player two winning an advantage point when the score is in deuce', () => {
+      const playerWinsAdvPoint: GameState = { 
+        sets: [0,0],
+        games: [0,0],
+        points: [40,40]
+      };
+      const oneGame = playerWinsPoint(playerWinsAdvPoint, 2)
+      expect(oneGame).toEqual(["-","Advantage"]);
+    })
   })
 
 });
