@@ -101,5 +101,4 @@ describe("Tennis game", () => {
       expect(oneGame).toEqual(["-","Advantage"]);
     })
   })
-
 });
