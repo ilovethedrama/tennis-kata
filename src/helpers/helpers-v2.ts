@@ -8,7 +8,7 @@ export function playerWinsPoint(player: playerState) {
       return { ...player, points: 30 };
     case 30:
       return { ...player, points: 40 };
-    case 40:
+    case '-':
       return { ...player, points: 'Adv' };
       default:
         return player;

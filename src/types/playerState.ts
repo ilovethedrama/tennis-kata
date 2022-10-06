@@ -1,5 +1,5 @@
 export interface playerState {
-    points: number;
+    points: points;
     games: number;
     sets: number;
     matchesWon: number;
