@@ -1,20 +1,21 @@
-import { playerState } from "../types/playerState";
+import { gameState, playerState } from "../types/playerState";
 
-export function playerWinsPoint(score: playerState, currentPlayer: string) {
-  const currentScorer = currentPlayer;
-  switch (currentScorer) {
+export function playerWinsPoint(score: gameState, currentPlayer: string) {
+  const playerOne = score.playerOne;
+  const playerTwo = score.playerOne;
+  switch (currentPlayer) {
     case "Player One":
-      switch (score.points) {
+      switch (score.playerOne.points) {
         case 0:
-          return { ...score, points: 15 };
+          return { ...playerOne, points: 15 };
         case 15:
-          return { ...score, points: 30 };
+          return { ...playerOne, points: 30 };
         case 30:
-          return { ...score, points: 40 };
+          return { ...playerOne, points: 40 };
         case "-":
-          return { ...score, points: "Adv" };
+          return { ...playerOne, points: "Adv" };
       }
-      break;
+      return playerOne;
     }
-      return score;
+    return playerOne;
 }
