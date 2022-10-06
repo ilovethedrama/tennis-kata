@@ -12,6 +12,8 @@ export function playerWinsPoint(score: gameState, currentPlayer: string) {
           return { ...playerOne, points: 30 };
         case 30:
           return { ...playerOne, points: 40 };
+        case 40:
+          return { ...playerOne, points: 0 };
         case "-":
           return { ...playerOne, points: "Adv" };
       }
